@@ -1,15 +1,10 @@
-def predicate_function(function,data1,data2):
-    return funtion(data1,data2)
-def Matchdata(data1, data2):
-    return data1 == data2
-
 def hasAllItems(allItemsOfThis,inThis):
     for i in range(len(allItemsOfThis)):
         if((allItemsOfThis[i] in inThis)==False):
             return False
     return True
  
-def getMatchTypeBuilder(input1, typeBuilder):
+def filterMatchTypeBuilder(input1, typeBuilder):
     matching = []
     matchingFinal = []
     for i in range(len(input1)):
@@ -22,9 +17,36 @@ def getMatchTypeBuilder(input1, typeBuilder):
             matchingFinal.append(j)
     return matchingFinal
 
-def getMatchPlaces(input1,input2):
+def getDangerList(danger):
+    outputList = []
+    match danger:
+        case "Red":
+            outputList = ["Red"]
+        case "Orange":
+            outputList = ["Red","Orange"]
+        case "Yellow":
+            outputList = ["Red","Orange","Yellow"]
+        case "Green":
+            outputList = ["Red","Orange","Yellow","Green"]
+    return outputList
+
+def filterMinDanger(CurrentList,danger):
+    matching = []
+    dangerList = []
+    dangerList = getDangerList(danger)
+    for i in range(len(CurrentList)):
+        if any(elem in CurrentList[i]['zoneDangerous'] for elem in dangerList):
+            matching.append(CurrentList[i])
+    return matching
+
+
+
+def filterMatchPlaces(input1,input2):
     MatchTypeBuilderList = []
-    MatchTypeBuilderList = getMatchTypeBuilder(input1,input2['typeBuilder'])
+    MatchTypeBuilderList = filterMatchTypeBuilder(input1,input2['typeBuilder'])
+    if(input2['typeBuilder']=="Houses"):
+        MatchDangerList = filterMinDanger(MatchTypeBuilderList,input2['minDanger'])
+        print(MatchDangerList)
     print(MatchTypeBuilderList)
 
 
