@@ -1,9 +1,3 @@
-def hasAllItems(allItemsOfThis,inThis):
-    for i in range(len(allItemsOfThis)):
-        if((allItemsOfThis[i] in inThis)==False):
-            return False
-    return True
- 
 def filterMatchTypeBuilder(input1, typeBuilder):
     matching = []
     matchingFinal = []
@@ -46,6 +40,12 @@ def filterPetFriendly(CurrentList,wannaPetFriendly):
             matching.append(CurrentList[i])
     return matching
 
+def filterComercialActivity(CurrentList, ComercialActivity):
+    matching = []
+    for i in range(len(CurrentList)):
+        if(ComercialActivity in CurrentList[i]['commercialActivities']):
+            matching.append(CurrentList[i])
+    return matching
 
 def filterMatchPlaces(input1,input2):
     MatchTypeBuilderList = []
@@ -54,6 +54,8 @@ def filterMatchPlaces(input1,input2):
         SecondFilterList = filterMinDanger(MatchTypeBuilderList,input2['minDanger'])
     if(input2['typeBuilder']=="Apartments"):
         SecondFilterList = filterPetFriendly(MatchTypeBuilderList,input2['wannaPetFriendly'])
+    if(input2['typeBuilder']=="Premises"):
+        SecondFilterList = filterComercialActivity(MatchTypeBuilderList,input2['commercialActivity'])
         print(MatchTypeBuilderList)
 
     print(MatchTypeBuilderList)
