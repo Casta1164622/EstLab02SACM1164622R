@@ -47,6 +47,13 @@ def filterComercialActivity(CurrentList, ComercialActivity):
             matching.append(CurrentList[i])
     return matching
 
+def filterPrice(CurrentList, budget):
+    matching = []
+    for i in range(len(CurrentList)):
+        if(CurrentList[i]['price']<=budget):
+            matching.append(CurrentList[i])
+    return matching
+
 def filterMatchPlaces(input1,input2):
     MatchTypeBuilderList = []
     MatchTypeBuilderList = filterMatchTypeBuilder(input1,input2['typeBuilder'])
@@ -57,6 +64,9 @@ def filterMatchPlaces(input1,input2):
     if(input2['typeBuilder']=="Premises"):
         SecondFilterList = filterComercialActivity(MatchTypeBuilderList,input2['commercialActivity'])
         print(MatchTypeBuilderList)
+
+    FilterPriceList = filterPrice(SecondFilterList,input2['budget'])
+    FilterPriceList.sort(key = lambda elem: elem['price'])
 
     print(MatchTypeBuilderList)
 
