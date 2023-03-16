@@ -39,14 +39,23 @@ def filterMinDanger(CurrentList,danger):
             matching.append(CurrentList[i])
     return matching
 
+def filterPetFriendly(CurrentList,wannaPetFriendly):
+    matching = []
+    for i in range(len(CurrentList)):
+        if(CurrentList[i]['isPetFriendly'] == wannaPetFriendly):
+            matching.append(CurrentList[i])
+    return matching
 
 
 def filterMatchPlaces(input1,input2):
     MatchTypeBuilderList = []
     MatchTypeBuilderList = filterMatchTypeBuilder(input1,input2['typeBuilder'])
     if(input2['typeBuilder']=="Houses"):
-        MatchDangerList = filterMinDanger(MatchTypeBuilderList,input2['minDanger'])
-        print(MatchDangerList)
+        SecondFilterList = filterMinDanger(MatchTypeBuilderList,input2['minDanger'])
+    if(input2['typeBuilder']=="Apartments"):
+        SecondFilterList = filterPetFriendly(MatchTypeBuilderList,input2['wannaPetFriendly'])
+        print(MatchTypeBuilderList)
+
     print(MatchTypeBuilderList)
 
 
