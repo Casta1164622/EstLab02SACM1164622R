@@ -1,15 +1,4 @@
-def predicate_function(function,data1,data2):
-    return funtion(data1,data2)
-def Matchdata(data1, data2):
-    return data1 == data2
-
-def hasAllItems(allItemsOfThis,inThis):
-    for i in range(len(allItemsOfThis)):
-        if((allItemsOfThis[i] in inThis)==False):
-            return False
-    return True
- 
-def getMatchTypeBuilder(input1, typeBuilder):
+def filterMatchTypeBuilder(input1, typeBuilder):
     matching = []
     matchingFinal = []
     for i in range(len(input1)):
@@ -22,10 +11,70 @@ def getMatchTypeBuilder(input1, typeBuilder):
             matchingFinal.append(j)
     return matchingFinal
 
-def getMatchPlaces(input1,input2):
+def getDangerList(danger):
+    outputList = []
+    match danger:
+        case "Red":
+            outputList = ["Red"]
+        case "Orange":
+            outputList = ["Red","Orange"]
+        case "Yellow":
+            outputList = ["Red","Orange","Yellow"]
+        case "Green":
+            outputList = ["Red","Orange","Yellow","Green"]
+    return outputList
+
+def filterMinDanger(CurrentList,danger):
+    matching = []
+    dangerList = []
+    dangerList = getDangerList(danger)
+    for i in range(len(CurrentList)):
+        if any(elem in CurrentList[i]['zoneDangerous'] for elem in dangerList):
+            matching.append(CurrentList[i])
+    return matching
+
+def filterPetFriendly(CurrentList,wannaPetFriendly):
+    matching = []
+    for i in range(len(CurrentList)):
+        if(CurrentList[i]['isPetFriendly'] == wannaPetFriendly):
+            matching.append(CurrentList[i])
+    return matching
+
+def filterComercialActivity(CurrentList, ComercialActivity):
+    matching = []
+    for i in range(len(CurrentList)):
+        if(ComercialActivity in CurrentList[i]['commercialActivities']):
+            matching.append(CurrentList[i])
+    return matching
+
+def filterPrice(CurrentList, budget):
+    matching = []
+    for i in range(len(CurrentList)):
+        if(CurrentList[i]['price']<=budget):
+            matching.append(CurrentList[i])
+    return matching
+
+def prepareToPrint(CurrentList):
+    outputList = []
+    for i in range(len(CurrentList)):
+        outputList.append(CurrentList[i]['id'])
+    return outputList
+
+def filterMatchPlaces(input1,input2):
     MatchTypeBuilderList = []
-    MatchTypeBuilderList = getMatchTypeBuilder(input1,input2['typeBuilder'])
-    print(MatchTypeBuilderList)
+    MatchTypeBuilderList = filterMatchTypeBuilder(input1,input2['typeBuilder'])
+    if(input2['typeBuilder']=="Houses"):
+        SecondFilterList = filterMinDanger(MatchTypeBuilderList,input2['minDanger'])
+    if(input2['typeBuilder']=="Apartments"):
+        SecondFilterList = filterPetFriendly(MatchTypeBuilderList,input2['wannaPetFriendly'])
+    if(input2['typeBuilder']=="Premises"):
+        SecondFilterList = filterComercialActivity(MatchTypeBuilderList,input2['commercialActivity'])
+
+    FilterPriceList = filterPrice(SecondFilterList,input2['budget'])
+    FilterPriceList.sort(key = lambda elem: elem['price'])
+
+    PrintList = prepareToPrint(FilterPriceList)
+    print(PrintList)
 
 
 
