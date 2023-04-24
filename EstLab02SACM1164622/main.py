@@ -1,7 +1,7 @@
 import jsonReader as jreader
-import placeProcess as pp
 
-data = jreader.readJsonFile()
-for i in range(len(data)):
-    pp.filterMatchPlaces(data[i]['input1'],data[i]['input2'])
+Customers = jreader.readJsonFile('inputs/input_customer_example_lab_3.jsonl')
+Auctions = jreader.readJsonFile('inputs/input_auctions_example_lab_3.jsonl')
+for i in range(len(Customers)):
+   print(i)
 
