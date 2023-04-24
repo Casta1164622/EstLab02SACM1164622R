@@ -21,15 +21,15 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="placeProcess.py" />
     <Compile Include="main.py" />
     <Compile Include="jsonReader.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="inputs\input_lab_2_example.jsonl" />
+    <Folder Include="inputs\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="inputs\" />
+    <Content Include="inputs\input_auctions_example_lab_3.jsonl" />
+    <Content Include="inputs\input_customer_example_lab_3.jsonl" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
