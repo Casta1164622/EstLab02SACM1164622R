@@ -26,10 +26,10 @@
     <Compile Include="jsonReader.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="inputs\input_lab_2_example.jsonl" />
+    <Folder Include="input\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="inputs\" />
+    <Content Include="input\input_challenge.jsonl" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
