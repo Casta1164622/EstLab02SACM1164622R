@@ -5,7 +5,6 @@ class Node:
       self.data = data
 
    def insert(self, data):
-# Compare the new value with the parent node
       if self.data['dpi']:
          if data['dpi'] < self.data['dpi']:
             if self.left is None:
@@ -19,3 +18,16 @@ class Node:
                   self.right.insert(data)
       else:
          self.data = data
+
+def search(root, search):
+    currentNode = root
+    while(currentNode.data['dpi'] != search):
+        if(search > currentNode.data['dpi']):
+            currentNode = currentNode.right
+        if(search < currentNode.data['dpi']):
+            currentNode = currentNode.left
+        if(search == currentNode.data['dpi']):
+            return currentNode.data
+        elif(currentNode.left == None and currentNode.right == None):
+            return None
+        

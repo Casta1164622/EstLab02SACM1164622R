@@ -14,5 +14,5 @@ for i in range(len(Customers)):
 for i in range(len(Auctions)):
     OrderedCustomerList = customerP.orderCustomerPriority(Auctions[i]['customers'])
     AuctionWinner = customerP.getCustomer(OrderedCustomerList,Auctions[i]['rejection'])
-    print(i)
+    WinnerData = bt.search(CustomersTree,AuctionWinner['dpi'])
 
