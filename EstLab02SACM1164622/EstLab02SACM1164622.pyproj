@@ -21,6 +21,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="binaryTree.py" />
+    <Compile Include="customerPriority.py" />
+    <Compile Include="heapSort.py" />
     <Compile Include="main.py" />
     <Compile Include="jsonReader.py" />
   </ItemGroup>
